@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Button extends Component {
+const  ButtonItem =({button}) => {
     //this will deal with a onClick on a button event
     //then we will need to save the Selected Button
+   return (
+    <li>button {button} </li>
+    )
 }
 
-export default Button;
+export default ButtonItem;
