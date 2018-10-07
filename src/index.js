@@ -16,7 +16,7 @@ class App extends Component {
 
       this.state = {
           buttons: [],
-          selectedButton: 'javascript'
+          selectedButton: 'reactjs'
       };
         
     }

@@ -1,5 +1,5 @@
 import React  from 'react';
-const searchUrl = 'https://www.reddit.com/r/javascript/search.json?q=javascript';
+const searchUrl = 'https://www.reddit.com/r/javascript/search.json?q=';
 //the default should be in state - 'javascript'
 
 const SearchLine = (props) => {
@@ -8,8 +8,8 @@ let request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
 console.log(`${searchUrl}${props.selectedButton}`);
-//request.open('GET',`${searchUrl}${props.selectedButton}`, true);
-request.open('GET',searchUrl, true);
+request.open('GET',`${searchUrl}${props.selectedButton}`, true);
+//request.open('GET',searchUrl, true);
 
 request.onload = function () {
     // Begin accessing JSON data here
@@ -17,10 +17,13 @@ request.onload = function () {
     let stuff = JSON.parse(this.response);
     let investigate = stuff.data.children;
    // console.log(investigate);
-    Object.keys(investigate).map(i => console.log(investigate[i].data.selftext_html));
+   // Object.keys(investigate).map(i => console.log(investigate[i].data.selftext_html));
     Object.keys(investigate).map(i => console.log(investigate[i].data.title));
     Object.keys(investigate).map(i => console.log(investigate[i].data.url));
 }
+     // Send request
+    request.send();
+
         return (
             <div>
                 {searchUrl}{props.selectedButton}
