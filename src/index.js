@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import CardList from './components/card-list';
 import ButtonList from './components/button-list';
+import SearchLine from './components/search-line';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const buttons = ["javascript","drupal","php"];
+const cards = [1,2,3,4];
 
 class App extends Component {
     constructor(props){
@@ -14,19 +16,22 @@ class App extends Component {
 
       this.state = {
           buttons: [],
-          selectedButton: null
-      
-      }
-    //this.buttonStart('javascript');
-      
+          selectedButton: 'javascript'
+      };
+        
     }
-
-    render() {
+render() {
       return (
         <div>
         <ButtonList buttons={buttons} />
         <br />
-        <CardList />
+        {this.state.selectedButton}
+        <SearchLine 
+        selectedButton = {this.state.selectedButton}
+        />
+        <CardList 
+        cards={cards}
+        />
            
         </div>
       );

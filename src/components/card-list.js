@@ -1,14 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Card from './card';
+//import SearchLine from './search-line';
 
-class CardList extends Component {
-    render(){
+const CardList = (props) =>{
+    const cardItems = props.cards.map((card) => {
+        return (
+            <Card
+            key={card}
+            card={card} />
+        )
+    });
         return (
             <div className="card-list container">
-                {/** how do you print a list - look in video list**/ }
+                
                 {/* line comment looks like this */}
-                <p>card list goes here</p>
+            
+                <div>{cardItems}</div>
             </div>
         );
     }
-}
+
 export default CardList;

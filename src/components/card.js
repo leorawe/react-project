@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Card extends Component {
-//this will print out information - title and link
-//it does not contain State
-
+const Card = ({card}) => {
+    return (
+        <div>Card {card} </div>
+    )
 }
 
 export default Card;
