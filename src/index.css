@@ -70,6 +70,19 @@ p {
   hyphens: auto;
 }
 
+.button-list{
+  display: flex;
+  list-style-type: none;
+}
+
+.button-list li{
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: palegoldenrod;
+  margin: 0 10px 0 10px;
+  color: black;
+}
+
 @media screen and (min-width: 600px) {
   .card {
     flex: 1 1 calc(50% - 2rem);
