@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import CardList from './components/card-list';
 import ButtonList from './components/button-list';
-import SearchLine from './components/search-line';
+//SearchLine was good for vanilla JavaScript of reddit api
+//import SearchLine from './components/search-line';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const buttons = ["javascript","drupal","php"];
-const cards = [1,2,3,4];
 const DEFAULT_QUERY = 'reactjs';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -50,12 +50,10 @@ render() {
         <div>
         <ButtonList buttons={buttons} />
         <br />
-        {selectedButton}
-       
+        <div>{selectedButton}</div>
+       <hr />
         <CardList 
-        cards={cards}
         list={result.hits}
-        pattern={selectedButton}
         />
            
         </div>
