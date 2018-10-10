@@ -1,23 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Card from './card';
 //import SearchLine from './search-line';
 
-const CardList = (props) =>{
-    const cardItems = props.cards.map((card) => {
-        return (
-            <Card
-            key={card}
-            card={card} />
-        )
-    });
+class CardList extends Component{
+    render(){
+    const {list, pattern} = this.props;
         return (
             <div className="card-list container">
-                
-                {/* line comment looks like this */}
-            
-                <div>{cardItems}</div>
+                   {pattern}
+                {list.map(item =>
+                <div key={item.objectID} className="card">
+                    <span>
+                        <a href={item.url}>{item.title}</a>
+                    </span>
+                </div>
+                )}
             </div>
         );
     }
-
+}
 export default CardList;

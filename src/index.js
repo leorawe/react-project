@@ -9,6 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 const buttons = ["javascript","drupal","php"];
 const cards = [1,2,3,4];
+const DEFAULT_QUERY = 'reactjs';
+
+const PATH_BASE = 'https://hn.algolia.com/api/v1';
+const PATH_SEARCH = '/search';
+const PARAM_SEARCH = 'query=';
 
 class App extends Component {
     constructor(props){
@@ -16,21 +21,41 @@ class App extends Component {
 
       this.state = {
           buttons: [],
-          selectedButton: 'reactjs'
+          selectedButton: DEFAULT_QUERY,
+          result: null
       };
-        
+      this.setSearchTopStories = this.setSearchTopStories.bind(this);
     }
+
+    setSearchTopStories(result){
+      this.setState({result});
+    }
+  
+    componentDidMount() {
+      const {searchTerm} = this.state;
+  
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+        .then(response => response.json())
+        .then(result => this.setSearchTopStories(result))
+        .catch(error => error);
+    }
+
 render() {
+  console.log(this.state);
+
+  const {selectedButton, result} = this.state;
+
+  if (!result) {return null;}
       return (
         <div>
         <ButtonList buttons={buttons} />
         <br />
-        {this.state.selectedButton}
-        <SearchLine 
-        selectedButton = {this.state.selectedButton}
-        />
+        {selectedButton}
+       
         <CardList 
         cards={cards}
+        list={result.hits}
+        pattern={selectedButton}
         />
            
         </div>
@@ -38,6 +63,10 @@ render() {
     }
   }
   ReactDOM.render(<App />, document.getElementById('root'));
+
+ // <SearchLine 
+ //selectedButton = {selectedButton}
+ ///> 
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
