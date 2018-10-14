@@ -8,6 +8,7 @@ const  ButtonItem =({button, onButtonSelect}) => {
         console.log('button got clicked! ', selection);
         //this.setState(something here);
     }*/
+    
    return (
 
     <li><button onClick={() => onButtonSelect(button)}> {button} </button></li>
