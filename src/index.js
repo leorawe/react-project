@@ -28,20 +28,24 @@ class App extends Component {
     }
 
     setSearchTopStories(result){
+      //console.log(result);
       this.setState({result});
     }
   
     componentDidMount() {
-      const {searchTerm} = this.state;
+      const {selectedButton} = this.state;
+
+      const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
+      console.log(url);
   
-      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`)
         .then(response => response.json())
         .then(result => this.setSearchTopStories(result))
         .catch(error => error);
     }
 
 render() {
-  console.log(this.state);
+  //console.log(this.state);
 
   const {selectedButton, result} = this.state;
 

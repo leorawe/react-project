@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Card = (props) => {
-    console.log(props);
+   // console.log(props);
     return (
         <div className="card">
-            <a href={props.href}>{props.title}</a>
+            <h2>{props.title}</h2>
+           <p> <a href={props.href}>{props.href}</a></p>
         </div>
 
     )

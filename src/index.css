@@ -45,7 +45,6 @@ p {
   border-radius: 12px;
   overflow: hidden;
   transition: all .2s linear;
-  padding: 10px;
 }
 
 .card:hover {
@@ -53,6 +52,10 @@ p {
   transform: translate3D(0, -2px, 0);
 }
 
+.card p {
+    padding: 0 2.5rem 2.5rem;
+    margin: 0;
+}
 .card a{
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
@@ -69,6 +72,15 @@ p {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+card h2 {
+    text-align: center;
+    padding: 1.5rem 2.5rem;
+    background-image: linear-gradient(120deg, #6899DB 0%, #344DBA 100%);
+    margin: 0 0 2rem 0;
+    color: white;
+    line-height: 1.2;
 }
 
 .button-list{
