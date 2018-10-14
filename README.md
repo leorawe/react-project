@@ -1,4 +1,6 @@
-This project will eventually incorporate a Reddit API to find information on various topics.  So far, just building components.  Next step: getting State to work to save the category choice.
+This project will eventually incorporate a Reddit API to find information on various topics.  
+Working with Hacker News api.
+Select a button to choose topic. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
