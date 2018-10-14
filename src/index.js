@@ -31,17 +31,31 @@ class App extends Component {
       //console.log(result);
       this.setState({result});
     }
-  
-    componentDidMount() {
+
+    changeTerm = (newTerm) => {
+      this.setState({
+          selectedButton: newTerm
+      } )
+    }
+
+    showResults (){
       const {selectedButton} = this.state;
 
-      const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
-      console.log(url);
+     // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
+      //console.log(url);
   
       fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`)
         .then(response => response.json())
         .then(result => this.setSearchTopStories(result))
         .catch(error => error);
+    }
+  
+    componentDidMount() {
+        this.showResults();
+    }
+
+   componentDidUpdate(){
+        this.showResults();
     }
 
 render() {
@@ -52,7 +66,12 @@ render() {
   if (!result) {return null;}
       return (
         <div>
-        <ButtonList buttons={buttons} />
+        <ButtonList 
+        buttons={buttons} 
+       // changeTerm={this.changeTerm.bind(this)}  
+        //onButtonSelect = {selectedButton => this.setState({selectedButton})}
+        onButtonSelect = {this.changeTerm.bind(this)} 
+        />
         <br />
         <div>{selectedButton}</div>
        <hr />

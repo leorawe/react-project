@@ -9,7 +9,7 @@ import ButtonItem from './button';
     const buttonItems = props.buttons.map((button) => {
         return (
         <ButtonItem
-        //onButtonSelect = {props.onButtonSelect}
+        onButtonSelect = {props.onButtonSelect}
         key = {button}
         button = {button} />
         )
