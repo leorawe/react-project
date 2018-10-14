@@ -1,10 +1,13 @@
+# API News by Button Selection  
+
+## Description of Project
 This project will eventually incorporate a Reddit API to find information on various topics.  
 Working with Hacker News api.
 Select a button to choose topic. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-============  
+___
 ***I will probably delete most of the documentation below, eventually***
 
 Below you will find some information on how to perform common tasks.<br>
