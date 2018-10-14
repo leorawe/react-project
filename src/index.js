@@ -8,7 +8,7 @@ import ButtonList from './components/button-list';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const buttons = ["javascript","drupal","php"];
+const buttons = ["javascript","drupal","php", "reactjs"];
 const DEFAULT_QUERY = 'reactjs';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -25,6 +25,7 @@ class App extends Component {
           result: null
       };
       this.setSearchTopStories = this.setSearchTopStories.bind(this);
+      this.showResults = this.showResults.bind(this);
     }
 
     setSearchTopStories(result){
@@ -35,35 +36,37 @@ class App extends Component {
     changeTerm = (newTerm) => {
       this.setState({
           selectedButton: newTerm
-      } )
+      } );
+      this.showResults(newTerm);
     }
 
-    showResults (){
-      const {selectedButton} = this.state;
+    showResults (searchTerm){
+      
 
      // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
       //console.log(url);
   
-      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`)
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
         .then(response => response.json())
         .then(result => this.setSearchTopStories(result))
         .catch(error => error);
     }
   
     componentDidMount() {
-        this.showResults();
+        const {selectedButton} = this.state;
+        this.showResults(selectedButton);
     }
 
-   componentDidUpdate(){
+  /* componentDidUpdate(){
         this.showResults();
-    }
+    }*/
 
 render() {
   //console.log(this.state);
 
   const {selectedButton, result} = this.state;
 
-  if (!result) {return null;}
+  //if (!result) {return null;}
       return (
         <div>
         <ButtonList 
@@ -75,10 +78,11 @@ render() {
         <br />
         <div>{selectedButton}</div>
        <hr />
+       {result &&
         <CardList 
         list={result.hits}
         />
-           
+       }
         </div>
       );
     }
