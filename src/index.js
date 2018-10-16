@@ -10,8 +10,6 @@ import * as serviceWorker from './serviceWorker';
 import {
   DEFAULT_QUERY,
   PATH_BASE,
-  PATH_SEARCH,
-  PARAM_SEARCH,
 } from './constants/';
 
 const buttons = ["javascript","drupal","php", "reactjs", "laravel"];
@@ -23,16 +21,18 @@ class App extends Component {
       this.state = {
           buttons: [],
           selectedButton: DEFAULT_QUERY,
-          result: null
+          posts: [],
+          loading: true,
+          error: null
       };
-      this.setSearchTopStories = this.setSearchTopStories.bind(this);
+     // this.setSearchTopStories = this.setSearchTopStories.bind(this);
       this.showResults = this.showResults.bind(this);
     }
 
-    setSearchTopStories(result){
+   /* setSearchTopStories(result){
       //console.log(result);
       this.setState({result});
-    }
+    }*/
 
     changeTerm = (newTerm) => {
       this.setState({
@@ -44,15 +44,32 @@ class App extends Component {
     }
 
     showResults (searchTerm){
-      
 
-     // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
-      //console.log(url);
+     //const url = `${PATH_BASE}${DEFAULT_SUBREDDIT}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}${END_VALUES}`;
+     const url = `${PATH_BASE}${searchTerm}.json`;
+     console.log(url);
   
-      axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
-       // .then(response => response.json())
-        .then(result => this.setSearchTopStories(result.data))
-        .catch(error => error);
+     // axios(`${PATH_BASE}${DEFAULT_SUBREDDIT}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}${END_VALUES}`)
+        axios.get(`${PATH_BASE}${searchTerm}.json`)
+        .then(res => {
+          // Transform the raw data by extracting the nested posts
+          const posts = res.data.data.children.map(obj => obj.data);
+  
+          // Update state to trigger a re-render.
+          // Clear any errors, and turn off the loading indiciator.
+          this.setState({
+            posts,
+            loading: false,
+            error: null
+          });
+        })
+        .catch(err => {
+          // Something went wrong. Save the error in state and re-render.
+          this.setState({
+            loading: false,
+            error: err
+          });
+        });
     }
   
     componentDidMount() {
@@ -60,16 +77,9 @@ class App extends Component {
         this.showResults(selectedButton);
     }
 
-  /* componentDidUpdate(){
-        this.showResults();
-    }*/
-
 render() {
-  //console.log(this.state);
-
-  const {selectedButton, result} = this.state;
-
-  //if (!result) {return null;}
+  const {selectedButton, posts} = this.state;
+  //console.log({posts});
       return (
         <div>
         <ButtonList 
@@ -81,11 +91,9 @@ render() {
         <br />
         <div>{selectedButton}</div>
        <hr />
-       {result &&
         <CardList 
-        list={result.hits}
+        posts={posts}
         />
-       }
         </div>
       );
     }

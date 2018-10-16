@@ -4,13 +4,13 @@ import Card from './card';
 
 class CardList extends Component{
     render(){
-    const {list} = this.props;
+    const {posts} = this.props;
         return (
             <div className="card-list container">
                    
-                {list.map(item =>
+                {posts.map(item =>
                     <Card  
-                        key={item.objectID} 
+                        key={item.id} 
                         href={item.url}
                         title = {item.title}
                     />
