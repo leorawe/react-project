@@ -12,7 +12,7 @@ import {
   PATH_BASE,
 } from './constants/';
 
-const buttons = ["javascript","drupal","php", "reactjs", "laravel"];
+const buttons = ["javascript","drupal","php", "reactjs", "laravel", "books"];
 
 class App extends Component {
     constructor(props){
