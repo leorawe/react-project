@@ -11,7 +11,7 @@ const  ButtonItem =({button, onButtonSelect}) => {
     
    return (
 
-    <li><button onClick={() => onButtonSelect(button)}> {button} </button></li>
+    <li><button onClick={( ) => onButtonSelect(button)}> {button} </button></li>
     )
 }
 //    <li><button onClick={(e) => handleClick(e, {button})}> {button} </button></li>

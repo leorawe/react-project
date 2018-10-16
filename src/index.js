@@ -5,15 +5,15 @@ import CardList from './components/card-list';
 import ButtonList from './components/button-list';
 //SearchLine was good for vanilla JavaScript of reddit api
 //import SearchLine from './components/search-line';
-//import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {
+  DEFAULT_QUERY,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+} from './constants/';
 
-const buttons = ["javascript","drupal","php", "reactjs"];
-const DEFAULT_QUERY = 'reactjs';
-
-const PATH_BASE = 'https://hn.algolia.com/api/v1';
-const PATH_SEARCH = '/search';
-const PARAM_SEARCH = 'query=';
+const buttons = ["javascript","drupal","php", "reactjs", "laravel"];
 
 class App extends Component {
     constructor(props){
@@ -38,6 +38,8 @@ class App extends Component {
           selectedButton: newTerm
       } );
       this.showResults(newTerm);
+      //do I need this?
+     // e.preventDefault();
     }
 
     showResults (searchTerm){
