@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
 import './index.css';
 import CardList from './components/card-list';
@@ -48,9 +49,9 @@ class App extends Component {
      // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${selectedButton}`;
       //console.log(url);
   
-      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
-        .then(response => response.json())
-        .then(result => this.setSearchTopStories(result))
+      axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+       // .then(response => response.json())
+        .then(result => this.setSearchTopStories(result.data))
         .catch(error => error);
     }
   
