@@ -12,7 +12,7 @@ import {
   PATH_BASE,
 } from './constants/';
 
-const buttons = ["javascript","drupal","php", "reactjs", "laravel", "books"];
+const buttons = ["javascript","drupal","php", "reactjs", "laravel", "oop", "books"];
 
 class App extends Component {
     constructor(props){
@@ -63,12 +63,30 @@ class App extends Component {
             error: null
           });
         })
-        .catch(err => {
+        .catch(error => {
           // Something went wrong. Save the error in state and re-render.
-          this.setState({
+          console.log('nopes');
+          // Error
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          // console.log(error.response.data);
+           console.log(error.response.status);
+          // console.log(error.response.headers);
+      } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+      } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+      }
+      console.log(error.config);
+         /* this.setState({
             loading: false,
             error: err
-          });
+          });*/
         });
     }
   
@@ -78,7 +96,7 @@ class App extends Component {
     }
 
 render() {
-  const {selectedButton, posts} = this.state;
+  const {selectedButton, posts, error} = this.state;
   //console.log({posts});
       return (
         <div>
@@ -91,13 +109,16 @@ render() {
         <br />
         <div>{selectedButton}</div>
        <hr />
+       {error}
         <CardList 
         posts={posts}
         />
         </div>
       );
     }
+
   }
+  
   ReactDOM.render(<App />, document.getElementById('root'));
 
  // <SearchLine 
