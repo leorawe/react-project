@@ -96,7 +96,7 @@ class App extends Component {
     }
 
 render() {
-  const {selectedButton, posts, error} = this.state;
+  const {selectedButton, posts} = this.state;
   //console.log({posts});
       return (
         <div>
@@ -107,9 +107,8 @@ render() {
         onButtonSelect = {this.changeTerm.bind(this)} 
         />
         <br />
-        <div>{selectedButton}</div>
+        <div>Reddit links on {selectedButton}:</div>
        <hr />
-       {error}
         <CardList 
         posts={posts}
         />
