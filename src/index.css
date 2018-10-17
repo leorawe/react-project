@@ -89,6 +89,7 @@ card h2 {
   list-style-type: none;
   justify-content: space-evenly;
   width: 100%;
+  padding-left: 10px;
 }
 
 .button-list li{

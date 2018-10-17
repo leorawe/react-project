@@ -72,7 +72,7 @@ class App extends Component {
           // that falls out of the range of 2xx
           // console.log(error.response.data);
            console.log(error.response.status);
-          // console.log(error.response.headers);
+           console.log(error.response.headers);
       } else if (error.request) {
           // The request was made but no response was received
           // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -96,7 +96,7 @@ class App extends Component {
     }
 
 render() {
-  const {selectedButton, posts} = this.state;
+  const {selectedButton, posts, loading} = this.state;
   //console.log({posts});
       return (
         <div>
@@ -109,10 +109,15 @@ render() {
         <br />
         <div>Reddit links on {selectedButton}:</div>
        <hr />
+       {loading?
+        <div>Loading...</div>
+        :
         <CardList 
         posts={posts}
         />
+       }
         </div>
+       
       );
     }
 
